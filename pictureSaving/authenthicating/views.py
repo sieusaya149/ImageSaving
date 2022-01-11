@@ -5,7 +5,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
@@ -48,16 +48,35 @@ def Register(request):
     return render(request , 'authenthicating/register.html')
 
 #Login feature
-class CustomLoginView(LoginView):
-    template_name = 'authenthicating/login.html'
-    fields = "__all__"
-    redirect_authenticated_user = False
-    def get_success_url(self):
-        print('run success url run')
-        return reverse_lazy('home')
+def Login(request):
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            if not username or not password:
+                messages.success(request, 'Both Username and Password are required.')
+                return redirect('/login/')
+            user_obj = User.objects.filter(username = username).first()
+            if user_obj is None:
+                messages.success(request, 'User not found.')
+                return redirect('/login/')
+            user = authenticate(username = username , password = password)
+            if user is None:
+                messages.success(request, 'Wrong password.')
+                return redirect('/login/')
+            # if user is trusted
+            login(request , user)
+            return redirect('/')  
+    except Exception as e:
+        print(e)
+    return render(request , 'authenthicating/login.html')
+
 #Logout feature 
-def logout(request):
-    return render (request,"authenthicating/login.html")
+def Logout(request):
+    logout(request)
+    return redirect('/login/') 
+    # return render(request , 'authenthicating/login.html')
+
 # forget password feature
 def forgetPassPage(request):
     try:
