@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'authenthicating/styleRegister.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+    <div class="page">
+        <div class="header">
+          <h1 class="logo">PictureSaving</h1>
+          <p>Sign up to see photos from your crush</p>
+        </div>
+        <div class="container">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Email" name="email">
+            <input type="text" placeholder="Username" name="username">
+            <input type="password" placeholder="Password" name="password1">
+            <input type="password" placeholder="Comfirm Password" name="password2">
+            <input class="btn" type="submit" value="Register Now" style="width: inherit;
+            margin-bottom: 20px;padding: 7px 20px;border-radius: 5px;border: none;background-color: #0095f6;color: #ffffff;">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="error" style="margin-top: 10px;font-size: 14px;line-height: 18px;text-align: center;
+            color: #ed4956;color: rgba(var(--i30,237,73,86),1);">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+          </form>
+          <ul>
+            <li>By signing up, you agree to our</li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">Data Policy</a></li>
+            <li>and</li>
+            <li><a href="">Cookies Policy</a> .</li>
+         </ul>
+        </div>
+    </div>
+    <div class="option">
+       <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
+    </div>
+    <div class="footer">
+      <ul>
+        <li><a href="">ABOUT</a></li>
+        <li><a href="">HELP</a></li>
+        <li><a href="">PRESS</a></li>
+        <li><a href="">API</a></li>
+        <li><a href="">JOBS</a></li>
+        <li><a href="">PRIVACY</a></li>
+        <li><a href="">TEMS</a></li>
+        <li><a href="">LOCATIONS</a></li>
+        <li><a href="">TOP ACCOUNTS</a></li>
+        <li><a href="">HASHTAGS</a></li>
+        <li><a href="">LANGUAGE</a></li>
+      </ul>
+      <p>© 2020 PICTUREGRAM</p>
+    </div>
+    <main>
+</body>
+
+
+  
