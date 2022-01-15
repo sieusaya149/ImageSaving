@@ -1,0 +1,15 @@
+{% extends "post/index.html" %}
+{% load static %}
+{% block content %}
+<body>
+    <section class="main">
+    <div class="wrapper">
+        <div class="left-col">
+            <script>
+                render.renderHtml(post.getPost())
+            </script>
+        </div>
+    </div>
+    </section>
+</body>
+{% endblock content %}
