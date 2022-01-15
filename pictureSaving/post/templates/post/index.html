@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'post/style.css' %}">
+    <link rel="stylesheet" href="{% static 'post/styleImage.css' %}">
+    <script src="{%static 'post/controlImage.js' %}"></script> 
+    <script src="{%static 'post/loadingPost.js' %}"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <img src="{% static 'post/img/logo.PNG' %}" class="brand-img" alt="">
+            <input type="text" class="search-box" placeholder="search">
+            <div class="nav-items">
+                <a href="#"><img src="{% static 'post/img/home.PNG' %}" class="icon" alt=""></a>
+                <a href="#"><img src="{% static "post/img/add.PNG"%}" class="icon" alt=""></a>
+                <a href="{% url 'logout' %}"><img src="{% static "post/img/profile-pic.png"%}" class="icon" alt="" style="border-radius: 50%"></a>
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock content %}
+</body>
+</html>
