@@ -2,7 +2,6 @@ from django.urls import path
 from authenthicating import views
 from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
-    path('', views.home, name="home"),
     path('login/', views.Login, name="login"),
     path('logout/', views.Logout, name="logout"),
     path('register/', views.Register, name="register"),

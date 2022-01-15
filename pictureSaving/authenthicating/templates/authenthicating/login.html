@@ -23,10 +23,13 @@
                 <input type="password" placeholder="Password" class="input-2" name="password"/>
             </div>
             <input type="submit" value="Login Now" class="btn" />
-            {% if form.errors %}
-                <div class="error">
-                    <p aria-atomic="true">Sorry, your password was incorrect. Please double-check your password.</p>
-                </div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="error" style="margin-top: 10px;font-size: 14px;line-height: 18px;text-align: center;
+            color: #ed4956;color: rgba(var(--i30,237,73,86),1);">
+                {{ message }}
+            </div>
+            {% endfor %}
             {% endif %}
         </form>
         <div class="forgot-pass">
