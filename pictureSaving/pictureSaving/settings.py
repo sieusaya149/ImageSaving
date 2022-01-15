@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authenthicating.apps.AuthenthicatingConfig',
     'post.apps.PostConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hungdevngu99@gmail.com'
 EMAIL_HOST_PASSWORD = 'chobicon1'
+MEDIA_ROOT='/home/viethung/Images/'
+MEDIA_URL = '/Images/'
