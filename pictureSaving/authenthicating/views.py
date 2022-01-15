@@ -13,25 +13,27 @@ from django.contrib import messages
 from django.conf import settings 
 from authenthicating.helper import *
 import uuid
-#homepage
-def home(request):
-    return render(request, "authenthicating/home.html")
+
 #Register feature
 def Register(request):
     try:
         if request.method == 'POST':
             username = request.POST.get('username')
             email = request.POST.get('email')
-            password = request.POST.get('password')
+            password = request.POST.get('password1')
+            passwordConfirm = request.POST.get('password2')
+
         try:
             if User.objects.filter(email = email).first():
                 messages.success(request, 'Email is taken.')
-                print('Email is taken')
                 return redirect('/register/')
 
             if User.objects.filter(username = username).first():
                 messages.success(request, 'Username is taken.')
-                print('Username is taken')
+                return redirect('/register/')
+
+            if password != passwordConfirm:
+                messages.success(request, 'Please confirm password again')
                 return redirect('/register/')
 
             user_obj = User(username = username , email = email)
@@ -76,7 +78,6 @@ def Logout(request):
     logout(request)
     return redirect('/login/') 
     # return render(request , 'authenthicating/login.html')
-
 # forget password feature
 def forgetPassPage(request):
     try:
@@ -96,4 +97,23 @@ def forgetPassPage(request):
         print(e)
     print("end function")
     return render(request,'authenthicating/forgetPassword.html')
-
+# changing password
+def ChangePassword(request , token):
+    context = {}
+    try:
+        context = {'user_id' : token}
+        if request.method == 'POST':
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('reconfirm_password')
+            if  new_password != confirm_password:
+                messages.success(request, 'both should  be equal.')
+                return redirect(f'/change-password/{token}/')     
+            user_obj = User.objects.get(id = token)
+            user_obj.set_password(new_password)
+            user_obj.save()
+            print('saving new password')
+            return redirect('/login/')
+            
+    except Exception as e:
+        print(e)
+    return render(request , 'authenthicating/changePassword.html' , context)
