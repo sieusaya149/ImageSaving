@@ -6,5 +6,5 @@ urlpatterns = [
     path('api/getImageInfo/<postId>/', views.getImageInfor),
     path('api/getHeartInfo/<postId>/',views.getHeartInfor),
     path('api/getCommentInfo/<postId>/',views.getCommentInfor),
-    path('post/', views.postImage, name="post-image")
+    path('post', views.CreateNewPost, name="create-post")
 ]
