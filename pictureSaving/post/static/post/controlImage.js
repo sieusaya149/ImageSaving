@@ -30,3 +30,37 @@ function showSlides(n,postId) {
         dots[slideIndex-1].className += " active";
     }
 }
+ // For post reviewing
+ class DialogeSlide{
+
+ }
+
+
+ DialogeSlide.prototype.plusSlides = function (n){
+    this.showSlides(slideIndex += n);
+ }
+ DialogeSlide.prototype.currentSlide = function (n){
+    this.showSlides(slideIndex = n);
+ }
+ DialogeSlide.prototype.showSlides = function (n){
+     console.log('dialog handle')
+    var i;
+    var slides = document.getElementsByClassName("mySlides-dialog");
+    var dots = document.getElementsByClassName("dot-dialog");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+ }
+
+ var handleImageDialog = new DialogeSlide();
+
+
+
+   
