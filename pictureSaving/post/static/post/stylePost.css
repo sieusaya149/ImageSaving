@@ -1,16 +1,239 @@
-/* label {
-	display: block;
-	padding-left: 15px;
-	text-indent: -15px;
+#box-cover{
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
 }
 
-input {
-	width: 13px;
-	height: 13px;
-	padding: 0;
-	margin: 0;
-	vertical-align: bottom;
-	position: relative;
-	top: -1px;
-	*overflow: hidden;
-} */
+
+/* The Close Button */
+.close-icon {
+    margin-right: 20px;   /* set position to top right */
+    margin-top: 0px;
+    color: #aaa;        /* set color when do not click or hover */
+    float: right;         /* making the close float to the ringth of the screen*/
+    font-size: 100px;     /* set font-size of x larger */
+    font-weight: bold;    /* bold it to make it larger */
+    }
+    .close-icon:hover,
+    .close-icon:focus {
+    color: black;       /* when hover on it will change color to black */      
+    text-decoration: none; /* https://hocwebchuan.com/reference/cssSection/pr_text-decoration.php */
+    cursor: pointer; /* set  format cursor: https://hocwebchuan.com/reference/cssSection/pr_cursor.php */
+    }
+
+/* panel post strawberry */
+.dialog{
+    background-color: #fff;   /* making background color of dialog is white*/
+    margin: auto;               /* then margin it to center by auto margin*/
+    margin-top: 200px;          /* move dialog below 200px from top after centering*/
+    padding: 1%;                /* making content of dialog inside pading*/
+    border: 1px solid #888;   /* making border with color brown */
+    width: 900px;               /* set fix heigh end width so in future FIXME */
+    height: 870px;   
+    border-radius: 15px;        /* making four angle round with the radious 15px*/
+    position: relative;         /* set position to relative so in future many class using absolute will see dialog like anchor*/
+}
+/* button turn back if want to post again */
+.previous-dialog{
+    display: none;               /*in the initial will none because user no post any images*/
+    font-size: 20px;             /*font size of word in*/
+    margin: unset;               /*none margin to fix in top -left*/
+    color: #0095f6;            /* blue color like button post*/
+    text-decoration: underline;  /*making underline for the words*/
+    width: fit-content;          /*witdh will fix content to retrict wrong hovering or clicking*/
+    block-size: fit-content;
+}
+.previous-dialog:hover{
+    color: #063555;
+}
+/*container inside dialog in here we have input tag and images show*/
+.containter{
+    display: block;
+    margin: auto;
+    background-color:#fff;
+    width: 800px;
+    height: 750px;
+    border-radius: 15px;
+}
+/*container second manage input tag and images show --> making easy to turn off or turn on when switching*/
+.container-second{
+    display: none;
+}
+/*container title inside container this is the title of the panel*/
+.container-title{
+    text-align: center; /*making text is in center of the container-title*/
+    color: indianred;
+}
+/*labe for input tag caption and description*/
+.input-data-label {
+    font-weight: bold;
+    display:block;
+    border:none;
+    height: 20px;
+    padding-bottom: 3px;
+    width:80%;
+    margin: auto;
+}
+/*fill caption and description here*/
+.input-data{
+    /* margin: auto; */
+    border-style: groove;  /*boder style groover is bettern than anything in https://www.w3schools.com/css/css_border.asp*/
+    font-size: 25px;
+    display:block;
+    border: nones;
+    width:80%;
+    height: 100px;
+    border-bottom:1px solid #ccc;
+    height: 40px;
+    margin: auto;
+    border-radius: 4px;
+    background-color: white;
+}
+/*text area is bigger than input tag for descriping*/
+.bigger{
+    border-style: groove;
+    height: 80px;
+    resize: none; /* turn of resize in textarea */
+}
+
+/* Image frame */
+/* container-slideshow */
+.container-slideshow-dialog {
+    overflow:auto;         /* making able nested margin -top for .mySlides*/
+    margin: auto;
+    display: block;
+    background-color: #fff;
+    margin-top: 10px;
+    width: 80%;
+    position: relative;
+    height: 415px;
+}
+/* Hide the images by default */
+.mySlides-dialog {
+    width:100%;
+    height:380px;
+    margin: auto;
+    margin-top: 15px;
+    background-color: #fff;
+    display: block;
+    border-radius: 4px;
+}
+/* Image in Slides */
+.mySlides-dialog img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+/* Next & previous buttons */
+.prev-dialog, .next-dialog {
+    cursor: pointer;
+    position: absolute;
+    top:205px;
+    width: auto;
+    padding: 8.5px;
+    margin-top: -25px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+/* Position the "next button" to the right */
+.next-dialog {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot-dialog {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active, .dot-dialog:hover {
+    background-color: #717171;
+}    
+.container-dot-dialog{
+    text-align:center;
+}
+.dialog-button{
+    font-size: 20px;
+    color: #fff;
+    background-color: #0095f6;
+    margin: 0;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    width: 40%;
+    height: 6%;
+    border-radius: 7px;
+    transform: translate(-50%, -50%);
+    /* box-sizing: border-box; */
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    padding: 5px 9px;
+    text-align: center;
+    border: #fff;
+}
+.dialog-button:active, .dialog-button:hover{
+    background-color: #063555;
+}
+#btn-confirm{
+	display: none;
+}
+/* ICON
+ */
+#icon{
+    display: block;
+    height: 300px;
+    width: 300px;
+    background-color: #fff;
+    margin: auto;
+    margin-top:200px;
+}
+/* Number text (1/3 etc) */
+.numbertext-dialog {
+    color: #f2f2f2;
+    font-size: 15px;
+    /* padding: 8px 12px; */
+    position: absolute;
+    top: 0;
+    margin-top: 15px;
+  }
+/* ANIMATION */
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    }
+    
+    @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+    }
+    
+    @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+    }

@@ -1,7 +1,32 @@
 {% extends "post/index.html" %}
 {% load static %}
 {% block content %}
-<body>
+    <div id="box-cover">
+        <span class="close-icon">&times;</span>
+        <div class="dialog">
+            <p class="previous-dialog"> &#8634;	 Previous</p>
+            <div class="containter">
+                <h1 class='container-title'>Create a new Strawberry</h1>
+                <img id="icon" src="{%static 'post/img/strawberry.png'%}" alt="icon">
+                <div class="container-second">
+                    <label class="input-data-label"style="font-size: 20px">Caption</label>
+                    <br>
+                    <input class="input-data" type="text"  name="caption">
+                    <br>
+                    <label class="input-data-label"style="font-size: 20px">Description</label>
+                    <br>
+                    <textarea class="input-data bigger" type="text"  name="description"></textarea>
+                    <div class="container-slideshow-dialog"></div>
+                    <div class="container-dot-dialog"></div>
+                </div>
+            </div>
+            <!-- button upload image -->
+            <input type="file" id="imgupload" style="display:none" onchange="show(event)" multiple/> 
+            <button id='btn-post' class='dialog-button'>Post Strawberry</button>
+            <button id='btn-confirm' class='dialog-button'>Confirm Strawberry</button>
+        </div>
+    <script src="{% static 'post/postingImage.js' %}"></script> 
+    </div>
     <section class="main">
     <div class="wrapper">
         <div class="left-col">
@@ -11,5 +36,4 @@
         </div>
     </div>
     </section>
-</body>
 {% endblock content %}
