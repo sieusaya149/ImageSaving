@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, request
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings 
@@ -9,7 +9,7 @@ from .serializers import *
 from rest_framework.response import Response
 from post.models import *
 import os.path
-
+import uuid
 # Create your views here.
 def index(request):
     if(request.user.is_authenticated):
@@ -52,22 +52,22 @@ def get_name_uid(filename):
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return filename
 
-def postImage(request):
+def CreateNewPost(request):
     try:
         if request.method == 'POST':
             caption = request.POST.get('caption')
             print('caption:', caption)
             description = request.POST.get('description')
             print('description:', description)
-            listImages = request.FILES.getlist('myfile')
+            listImages = request.FILES.getlist('fileList')
             if (len(listImages)<1):
-                print('khong co hinh anh')
-                return render(request , 'db/post.html')
+                print('Do not have any images in this post')
+                return render(request , 'post/post.html')
             # get user now
             currentUser = request.user
             if not request.user.is_authenticated:
-                print('khong dc phep')
-                return render(request , 'db/post.html')
+                print('not allow to use this resource')
+                return render(request , 'post/post.html')
             print('user now ', currentUser)
             # create new post
             newPost= Post.objects.create(userId=currentUser, caption=caption, 
@@ -82,8 +82,7 @@ def postImage(request):
                 newImage = Image.objects.create(postId=newPost,
                                                 name=file.name,
                                                 path=unitName)
-                print('create new images success')
-                print(file.name)
+            print('create new images success')
     except Exception as e:
             print(e)
-    return render(request , 'post/createPost.html')
+    return redirect('/')
