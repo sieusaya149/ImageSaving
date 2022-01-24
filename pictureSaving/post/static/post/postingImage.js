@@ -40,7 +40,7 @@ $('.previous-dialog').click(function(){
 })
 
 // show to review image
-function show()
+function show(event)
 {
     $('.container-dot-dialog').empty();
     $('.container-slideshow-dialog').empty() // making slide show empty
